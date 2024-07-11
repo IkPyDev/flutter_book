@@ -12,6 +12,8 @@ Quyida loyihaga oid ba'zi rasmlar:
 ## Video
 
 Loyihaning qisqacha ko'rinishi:
-[![Project Video](https://i.imgur.com/QmoKexk.png)](https://github.com/IkPyDev/flutter_book/blob/master/large.mp4)
 
-## Loyihani ishga tushirish
+<video width="320" height="240" controls>
+  <source src="https://github.com/IkPyDev/flutter_book/blob/master/large.mp4" type="video/mp4">
+  Sizning brauzeringiz video teglamasini qo'llab-quvvatlamaydi.
+</video>
