@@ -12,6 +12,6 @@ Quyida loyihaga oid ba'zi rasmlar:
 ## Video
 
 Loyihaning qisqacha ko'rinishi:
-[![Project Video](https://github.com/IkPyDev/flutter_book/blob/master/large.mp4)
+[![Project Video](https://github.com/IkPyDev/flutter_book/blob/master/large.mp4)]
 
 ## Loyihani ishga tushirish
