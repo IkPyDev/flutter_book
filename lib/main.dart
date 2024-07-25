@@ -1,4 +1,5 @@
 import 'package:book_app/bloc/home/home_bloc.dart';
+import 'package:book_app/bloc/library/library_bloc.dart';
 import 'package:book_app/presintions/auth/login/login.dart';
 import 'package:book_app/presintions/auth/register/register.dart';
 import 'package:book_app/presintions/auth/splash/splash_screens.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: "UniNeue",
           useMaterial3: true,
@@ -70,7 +72,10 @@ class MyApp extends StatelessWidget {
               child: const Music(),
             ),
         '/profile': (context) => const Detail(),
-        '/search': (context) => const Library(),
+        '/search': (context) =>  BlocProvider(
+  create: (context) => LibraryBloc(),
+  child: Library(),
+),
       },
       home: const SplashScreens(),
     );

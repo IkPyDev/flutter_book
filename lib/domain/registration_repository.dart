@@ -12,7 +12,9 @@ class RegistrationRepository {
 
   Future<String?> loginUser(String email, String password) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      var a = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      print(a);
+      print("aAAAAAAAAAAAAAAAAAAAAAAAA");
       return null;
     } catch (e) {
       return e.toString();

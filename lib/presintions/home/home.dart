@@ -1,6 +1,7 @@
 import 'package:book_app/presintions/home/widjets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../bloc/home/home_bloc.dart';
 
@@ -64,10 +65,34 @@ class _HomeScreenState extends State<Home> {
                   rowsHorizontal("All Books"),
                   const SizedBox(height: 12.0),
                   if (state.allBooks.isEmpty)
-                    const Center(child: CircularProgressIndicator())
+                  // Shimmer effect for loading state
+                    Column(
+                      children: [
+                        Row(
+                          children: List.generate(
+                            2,
+                                (index) => Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: Container(
+                                  height: 250,
+                                  width: 140,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   else
                     SizedBox(
-                      height: 250,
+                      height: 200,
                       child: ListView.separated(
                         shrinkWrap: true,
                         separatorBuilder: (_, i) {
@@ -104,18 +129,42 @@ class _HomeScreenState extends State<Home> {
                             colorIndex: i,
                             category: state.allCategories[i],
                             onClick: () {
-                              context.read<HomeBloc>().add(LoadBooksByCategory(state.allCategories[i]));
+                              context.read<HomeBloc>().add(
+                                  LoadBooksByCategory(state.allCategories[i]));
                             },
-                            isChosen: state.allCategories[i] == state.chosenCategory,
+                            isChosen:
+                            state.allCategories[i] == state.chosenCategory,
                           ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 24.0),
                   Expanded(
-                    child: GridView.builder(
+                    child: state.booksByCategory.isEmpty
+                        ? GridView.builder(
+                      itemCount: 6, // Number of shimmer items
+                      gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 3 / 5,
+                      ),
+                      itemBuilder: (_, i) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    )
+                        : GridView.builder(
                       itemCount: state.booksByCategory.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 12,
                         mainAxisSpacing: 12,

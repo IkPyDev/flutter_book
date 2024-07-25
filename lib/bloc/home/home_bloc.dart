@@ -13,9 +13,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc() : super(HomeState.initial()) {
     on<LoadCategories>((event, emit) async {
+      print("ZZZZZZZZZZZZZZZZZZZZZZZZZZz");
+
       final categories = await _mainRepository.getCategories();
       final allBooks = await _mainRepository.getAllBooks();
-      emit(state.copyWith(allCategories: categories, allBooks: allBooks));
+      print("XXXXXXXXXXXXXXXXXXXXXX");
+      emit(state.copyWith(allCategories: categories, allBooks: allBooks,));
 
       if(allBooks.isNotEmpty) {
         print('all books: ${allBooks.length}' );

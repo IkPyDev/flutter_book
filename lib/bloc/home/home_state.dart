@@ -6,6 +6,7 @@ class HomeState extends Equatable {
   final List<String> allCategories;
   final List<BookData> allBooks;
 
+
   const HomeState({
     required this.chosenCategory,
     required this.booksByCategory,
