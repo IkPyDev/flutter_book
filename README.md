@@ -1,6 +1,7 @@
-# Flutter Book
-## bu online kitob oqish va eshitish imkoni beradi 
-## ilovadi suratlar 
+# Online Book
+## Bu online kitob o'qish va eshitish imkoni beradi 
+## Ilovadagi suratlar
+ 
 <img src="https://github.com/user-attachments/assets/ba3cc9c8-f7ed-4a24-bd47-88a6a29ce754" alt="photo_1_2024-07-25_14-53-54" width="200"/>
 <img src="https://github.com/user-attachments/assets/08ab1a8f-0e12-459c-b74e-133b9dbd6515" alt="photo_2_2024-07-25_14-53-54" width="200"/>
 <img src="https://github.com/user-attachments/assets/57b9b6c0-886e-4fb5-8a72-5bdf2ffeb697" alt="photo_3_2024-07-25_14-53-54" width="200"/>
