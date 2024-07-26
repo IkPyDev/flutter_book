@@ -8,18 +8,37 @@ enum LoginEnum {
 }
 
 class LoginState extends Equatable {
-  final LoginEnum loginState;
+    String email = '';
+    String password = '';
+    String errorMessage = '';
+   LoginEnum loginState;
 
   factory LoginState.initial() {
-    return const LoginState(loginState: LoginEnum.initial);
+    return  LoginState(loginState: LoginEnum.initial);
   }
 
-  const LoginState({required this.loginState});
+   LoginState({required this.loginState,this.email = '',this.password = '',this.errorMessage = ''});
+
+
+ LoginState copyWith({
+    String? email,
+    String? password,
+    String? errorMessage,
+    LoginEnum? loginState,
+  }) {
+    return LoginState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      loginState: loginState ?? this.loginState,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
+  }
+
 
   @override
-  List<Object?> get props => [loginState];
+  String toString() => 'LoginState(loginState: $loginState email: $email password: $password)';
 
-  LoginState copyWith({LoginEnum? loginState}) {
-    return LoginState(loginState: loginState ?? this.loginState);
-  }
+
+    @override
+    List<Object?> get props => [loginState,email,password,errorMessage];
 }

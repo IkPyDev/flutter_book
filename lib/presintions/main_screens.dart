@@ -23,7 +23,7 @@ class MainScreen extends StatelessWidget {
           child: IndexedStack(
             index: state.screenIndex,
             children: [
-              BlocProvider(create: (context) => HomeBloc(),
+              BlocProvider(create: (context) => HomeBloc()..add(LoadCategories()),
               child: const Home(),
               ),
               BlocProvider(create: (context) => SearchBloc(),

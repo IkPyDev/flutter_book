@@ -2,7 +2,6 @@ import 'package:book_app/domain/local/pref_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../bloc/login/login_bloc.dart';
 import '../../../utils/ui/registration_button.dart';
 import '../../../utils/ui/registration_field.dart';
@@ -21,7 +20,7 @@ class Login extends StatelessWidget {
         if (state.loginState == LoginEnum.success) {
           PrefHelper.setIsLoggedIn(true);
           Navigator.pushReplacementNamed(context, '/main');
-        }else if(state.loginState == LoginEnum.error){
+        } else if (state.loginState == LoginEnum.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Login failed'),
@@ -58,8 +57,7 @@ class Login extends StatelessWidget {
                           const SizedBox(height: 10),
                           Text(
                             'Sign in to continue',
-                            style: textTheme.headlineSmall
-                                ?.copyWith(color: Colors.grey),
+                            style: textTheme.headlineSmall?.copyWith(color: Colors.grey),
                           ),
                         ],
                       ),
@@ -70,44 +68,49 @@ class Login extends StatelessWidget {
                     child: Column(
                       children: [
                         RegistrationField(
-                            controller: emailController,
-                            hintText: "Email Address"),
+                          controller: emailController,
+                          hintText: "Email Address",
+                          onChanged: (value) {
+                            context.read<LoginBloc>().add(EmailChangeLoginEvent(value));
+                          },
+                        ),
                         const SizedBox(height: 10),
                         RegistrationField(
-                            controller: passwordController,
-                            hintText: "Password"),
-                        const SizedBox(height: 20),
+                          controller: passwordController,
+                          hintText: "Password",
+                          onChanged: (value) {
+                            context.read<LoginBloc>().add(PasswordChangeLoginEvent(value));
+                          },
+                        ),
+                        const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.read<LoginBloc>().add(ForgetPasswordClickEvent());
+                            },
                             child: Text(
                               'Forgot Password?',
-                              style: textTheme.bodySmall?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary),
+                              style: textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.primary),
                             ),
                           ),
                         ),
                         state.loginState != LoginEnum.loading
                             ? RegistrationButton(
-                                buttonText: 'SIGN IN',
-                                onClick: () {
-                                  context.read<LoginBloc>().add(
-                                      LoginWithEmailEvent(
-                                          email: emailController.text,
-                                          password: passwordController.text));
-                                },
-                              )
+                          buttonText: 'SIGN IN',
+                          onClick: () {
+                            context.read<LoginBloc>().add(LoginWithEmailEvent());
+                          },
+                        )
                             : const SizedBox(
-                                height: 48,
-                                width: 48,
-                                child: CircularProgressIndicator(),
-                              ),
+                          height: 48,
+                          width: 48,
+                          child: CircularProgressIndicator(),
+                        ),
                         const SizedBox(height: 20),
                         Text(
-                          'on sign in using',
-                          style:
-                              textTheme.bodySmall?.copyWith(color: Colors.grey),
+                          'or sign in using',
+                          style: textTheme.bodySmall?.copyWith(color: Colors.grey),
                         ),
                         const SizedBox(height: 8),
                         Row(
@@ -115,7 +118,7 @@ class Login extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                // TODO not implemented
+                                context.read<LoginBloc>().add(LoginWithGoogleEvent());
                               },
                               child: Image.asset(
                                 'assets/images/google.png',
@@ -126,7 +129,7 @@ class Login extends StatelessWidget {
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () {
-                                // TODO not implemented
+                                context.read<LoginBloc>().add(LoginWithFacebookEvent());
                               },
                               child: Image.asset(
                                 'assets/images/facebook.png',
@@ -140,14 +143,12 @@ class Login extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text: 'Do not have an account? ',
-                            style: textTheme.bodyLarge
-                                ?.copyWith(fontWeight: FontWeight.bold),
+                            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                             children: [
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/register');
+                                    context.read<LoginBloc>().add(ToRegisterClickEvent());
                                   },
                                 text: 'Register',
                                 style: textTheme.bodyLarge?.copyWith(

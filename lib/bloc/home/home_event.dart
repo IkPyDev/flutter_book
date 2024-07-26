@@ -1,6 +1,6 @@
 part of 'home_bloc.dart';
 
-class HomeEvent extends Equatable {
+abstract class HomeEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
@@ -11,7 +11,7 @@ class LoadBooksByCategory extends HomeEvent {
   LoadBooksByCategory(this.category);
 
   @override
-  List<Object> get props => [category];
+  List<Object?> get props => [category];
 }
 
 class LoadBooksByAll extends HomeEvent {

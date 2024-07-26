@@ -48,18 +48,10 @@ class PlayState extends Equatable {
 
   @override
   String toString() {
-    return 'PlayState(audioPlayer: $audioPlayer, isPlaying: $isPlaying, toPdfScreen: $toPdfScreen, duration: $duration, position: $position, isFirstTime: $isFirstTime)';
+    return 'PlayState(audioPlayer: $audioPlayer, isPlaying:';
   }
 
   @override
-  List<Object> get props {
-    return [
-      audioPlayer,
-      isPlaying,
-      toPdfScreen,
-      duration,
-      position,
-      isFirstTime,
-    ];
-  }
+  // TODO: implement props
+  List<Object?> get props =>  [audioPlayer];
 }

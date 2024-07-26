@@ -32,7 +32,7 @@ class _LibraryState extends State<Library> {
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
-              leading: Icon(Icons.arrow_back, color: Colors.black),
+              automaticallyImplyLeading: false,
               title: Center(
                 child: Text(
                   "Library",

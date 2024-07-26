@@ -68,4 +68,12 @@ class PlayBloc extends Bloc<PlayEvent, PlayState> {
       emit(state.copyWith());
     });
   }
+
+  @override
+  Future<void> close() {
+    state.audioPlayer.release();
+    state.audioPlayer.stop();
+    state.audioPlayer.dispose();
+    return super.close();
+  }
 }

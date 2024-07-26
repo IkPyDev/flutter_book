@@ -7,7 +7,6 @@ import '../../../bloc/search/search_bloc.dart';
 
 class Search extends StatelessWidget {
   Search({super.key});
-  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

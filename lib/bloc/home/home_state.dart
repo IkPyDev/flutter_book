@@ -6,7 +6,6 @@ class HomeState extends Equatable {
   final List<String> allCategories;
   final List<BookData> allBooks;
 
-
   const HomeState({
     required this.chosenCategory,
     required this.booksByCategory,
@@ -15,20 +14,25 @@ class HomeState extends Equatable {
   });
 
   factory HomeState.initial() {
-    return const HomeState(chosenCategory: '', booksByCategory: [], allCategories: [],allBooks: []);
+    return const HomeState(
+      chosenCategory: 'Hammasi',
+      booksByCategory: [],
+      allCategories: [],
+      allBooks: [],
+    );
   }
 
   @override
-  List<Object> get props => [chosenCategory, booksByCategory,allBooks];
+  List<Object> get props => [chosenCategory, booksByCategory, allCategories, allBooks];
 
   HomeState copyWith({
-    String? category,
+    String? chosenCategory,
     List<BookData>? booksByCategory,
     List<String>? allCategories,
     List<BookData>? allBooks,
   }) {
     return HomeState(
-      chosenCategory: category ?? this.chosenCategory,
+      chosenCategory: chosenCategory ?? this.chosenCategory,
       booksByCategory: booksByCategory ?? this.booksByCategory,
       allCategories: allCategories ?? this.allCategories,
       allBooks: allBooks ?? this.allBooks,
@@ -36,5 +40,5 @@ class HomeState extends Equatable {
   }
 
   @override
-  String toString() => 'HomeState(category: $chosenCategory, booksByCategory: $booksByCategory)';
+  String toString() => 'HomeState(chosenCategory: $chosenCategory, booksByCategory: $booksByCategory)';
 }

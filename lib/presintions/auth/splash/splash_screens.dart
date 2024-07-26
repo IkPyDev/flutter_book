@@ -27,12 +27,9 @@ class SplashScreens extends StatelessWidget {
             // Image.asset("assets/images/book_fon.png",fit: BoxFit.cover,),
             Expanded(
               flex: 1,
-              child: Container(
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage("assets/images/book_fon.png"),
-                  fit: BoxFit.cover,
-                )),
+              child: Image.asset(
+                "assets/images/book.gif",
+                fit: BoxFit.scaleDown,
               ),
             ),
           ],
@@ -43,28 +40,22 @@ class SplashScreens extends StatelessWidget {
           child: InkWell(
             onTap: () {
               bool a = PrefHelper.getIsLoggedIn();
-              if(a){
+              if (a) {
                 Navigator.pushNamed(context, '/main');
-
-              }else{
+              } else {
                 Navigator.pushNamed(context, '/login');
-
               }
             },
             child: Container(
                 width: 250,
                 padding: const EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(35)),
+                decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(35)),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Get Started",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     SizedBox(width: 10),
                     Icon(
